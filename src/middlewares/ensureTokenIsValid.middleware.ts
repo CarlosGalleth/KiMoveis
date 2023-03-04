@@ -1,9 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors";
 import jwt from "jsonwebtoken";
-import { User } from "../entities";
-import { AppDataSource } from "../data-source";
-import { Repository } from "typeorm";
+import "dotenv/config";
 
 export const ensureTokenIsValidMiddleware = (
   request: Request,
@@ -13,7 +11,7 @@ export const ensureTokenIsValidMiddleware = (
   const bearerToken = request.headers.authorization;
 
   if (!bearerToken) {
-    throw new AppError("Token is missing.", 401);
+    throw new AppError("Missing bearer token", 401);
   }
 
   const token = bearerToken.split(" ")[1];
@@ -23,10 +21,10 @@ export const ensureTokenIsValidMiddleware = (
       throw new AppError(error.message, 401);
     }
 
-    if (decoded.admin || decoded.sub === request.params.id) {
+    if (decoded.admin || decoded?.sub === request.params.id) {
       return next();
     }
 
-    throw new AppError("Need admin permission", 401);
+    throw new AppError("Insufficient permission", 403);
   });
 };

@@ -1,8 +1,8 @@
 import { Repository } from "typeorm";
-import { AppDataSource } from "../data-source";
-import { User } from "../entities";
-import { IUser, IUserReturn } from "../interfaces/users.interfaces";
-import { createUsersSchemaReturn } from "../schemas/users.schemas";
+import { AppDataSource } from "../../data-source";
+import { User } from "../../entities";
+import { IUser, IUserReturn } from "../../interfaces/users.interfaces";
+import { createUsersSchemaReturn } from "../../schemas/users.schemas";
 
 export const updateUserService = async (
   userData: IUser,
