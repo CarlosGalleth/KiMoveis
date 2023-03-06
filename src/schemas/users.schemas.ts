@@ -1,4 +1,3 @@
-import { hashSync } from "bcryptjs";
 import { z } from "zod";
 
 export const createUsersSchema = z.object({

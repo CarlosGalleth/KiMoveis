@@ -7,3 +7,5 @@ export const createCategorySchema = z.object({
 export const createCategorySchemaReturn = createCategorySchema.extend({
   id: z.number(),
 });
+
+export const categoryList = createCategorySchemaReturn.array()

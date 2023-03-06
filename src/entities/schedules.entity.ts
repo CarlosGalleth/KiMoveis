@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  Timestamp,
-} from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { RealEstate } from "./realEstate.entity";
 import { User } from "./user.entity";
 
@@ -13,15 +7,18 @@ export class Schedule {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  date: Date;
+  @Column({ type: "date" })
+  date: string;
 
-  @Column({ type: "time"})
+  @Column({ type: "time" })
   hour: string;
+
+  @Column()
+  propertieId: number;
 
   @ManyToOne(() => User)
   user: User;
 
   @ManyToOne(() => RealEstate)
-  realEstate: RealEstate
+  realEstate: RealEstate;
 }
