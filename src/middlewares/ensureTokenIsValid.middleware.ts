@@ -21,7 +21,17 @@ export const ensureTokenIsValidMiddleware = (
       throw new AppError(error.message, 401);
     }
 
+    request.userSub = decoded.sub;
+
+    if (!decoded.admin && request.baseUrl === "/schedules" && request.method === "GET") {
+      throw new AppError("Insufficient permission", 403);
+    }
+
     if (decoded.admin || decoded?.sub === request.params.id) {
+      return next();
+    }
+
+    if (request.baseUrl === "/schedules") {
       return next();
     }
 

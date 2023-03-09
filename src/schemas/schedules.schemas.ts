@@ -1,9 +1,11 @@
 import { z } from "zod";
+import { createUsersSchemaReturn } from "./users.schemas";
+import { createRealEstateSchemaReturn } from "./realEstate.schemas";
 
 export const createSchedulesSchema = z.object({
   date: z.string(),
   hour: z.string(),
-  propertieId: z.number(),
+  realEstateId: z.number(),
 });
 
 export const createSchedulesSchemaReturn = createSchedulesSchema.extend({
@@ -11,4 +13,9 @@ export const createSchedulesSchemaReturn = createSchedulesSchema.extend({
   userId: z.number(),
 });
 
-export const schedulesList = createSchedulesSchemaReturn.array();
+export const schedulesList = z.object({
+  date: z.string(),
+  hour: z.string(),
+  realEstate: createRealEstateSchemaReturn,
+  user: createUsersSchemaReturn,
+});

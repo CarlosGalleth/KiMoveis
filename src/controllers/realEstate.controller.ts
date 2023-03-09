@@ -18,4 +18,4 @@ export const listRealEstateController = async (request: Request, response: Respo
 
     return response.json(realEstateList)
 }
-
+ 

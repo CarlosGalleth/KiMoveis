@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { RealEstate } from "../../entities";
@@ -16,7 +16,7 @@ export const listRealEstateService = async (): Promise<IRealEstateList> => {
         }
     })
 
-    const realEstateListParsed = listRealEstate.parse(realEstateList)
+    const realEstateListParsed: IRealEstateList = listRealEstate.parse(realEstateList)
 
     return realEstateListParsed
 }

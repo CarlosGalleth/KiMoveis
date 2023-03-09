@@ -13,9 +13,6 @@ export class Schedule {
   @Column({ type: "time" })
   hour: string;
 
-  @Column()
-  propertieId: number;
-
   @ManyToOne(() => User)
   user: User;
 

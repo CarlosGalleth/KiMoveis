@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import { ICategory, ICategoryList } from "../interfaces/category.interfaces";
+import { ICategory, ICategoryList, IRealEstateFromCategory } from "../interfaces/category.interfaces";
 import { createCategoryService } from "../services/categoriesServices/createCategory.service";
 import { listCategoriesService } from "../services/categoriesServices/listCategories.service";
+import { listRealEstateFromCategoryService } from "../services/categoriesServices/listRealEstateFromCategory.service";
 
 export const createCategoryController = async (
   request: Request,
@@ -22,3 +23,12 @@ export const listCategoriesController = async (
 
   return response.json(categoryList);
 };
+
+export const listRealEstateFromCategoryController = async (request: Request, response: Response): Promise<Response> => {
+
+  const categoryId: number = Number(request.params.id)
+
+  const realEstateList: IRealEstateFromCategory = await listRealEstateFromCategoryService(categoryId)
+
+  return response.json(realEstateList)
+} 

@@ -6,6 +6,9 @@ declare global {
       user: {
         id: number;
       };
+      userSub: {
+        sub: number
+      }
     }
   }
 }

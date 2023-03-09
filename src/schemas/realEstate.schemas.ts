@@ -25,3 +25,9 @@ export const createRealEstateSchemaReturn = createRealEstateSchema
 export const listRealEstate = createRealEstateSchemaReturn
   .omit({ category: true })
   .array();
+
+  export const realEstateFromCategory = z.object({
+    id: z.number(),
+    name: z.string(),
+    realEstate: listRealEstate
+  })

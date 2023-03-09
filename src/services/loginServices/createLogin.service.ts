@@ -25,7 +25,7 @@ export const createLoginService = async (
   if (!passwordMatch) {
     throw new AppError("Invalid credentials", 401);
   }
-
+ 
   const token: string = jwt.sign(
     {
       admin: user.admin,
